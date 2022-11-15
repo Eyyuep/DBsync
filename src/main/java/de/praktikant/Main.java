@@ -14,20 +14,22 @@ public class Main {
         String connectionKonnektor = "jdbc:h2:./databases/db1";
         String connectionPortal = "jdbc:h2:./databases/db2";
 
-        Connection con = getConnection(connectionKonnektor);
-        Connection connection = getConnection(connectionPortal);
+        Connection conKonnektor = getConnection(connectionKonnektor);
+        Connection conPortal = getConnection(connectionPortal);
 
-        createTable(con);
-        createTable(connection);
+        createTable(conKonnektor);
+        createTable(conPortal);
 
-        createDataSet(con);
-        createDataSet(connection);
+        //createDataSet(conKonnektor);
+        //createDataSet(conPortal);
 
-        showDB(con);
-        showDB(connection);
+        showDB(conKonnektor);
+        showDB(conPortal);
 
-        /*editData(con);
-        editData(connection);*/
+        
+        //editData(conPortal);
+        
+        compareData(conKonnektor,conPortal);
 
 
     }
@@ -78,7 +80,7 @@ public class Main {
 
     public static void editData(Connection con) throws SQLException {
 
-        String query = "update tabelle_1 set username = 'ronaldinho' where id = 2";
+        String query = "update tabelle_1 set username = 'ronaldinho' where id = 1";
 
         con.createStatement().executeUpdate(query);
 
@@ -86,12 +88,19 @@ public class Main {
 
     public static void compareData(Connection db1, Connection db2) throws SQLException {
 
-        String query = "select db1.tabelle_1.*, db2.tabelle_1.* from db1.tabelle_1, db2.tabelle_1";
+        String query = "select * from tabelle_1;";
 
-        db1.createStatement().executeUpdate(query);
-        db2.createStatement().executeUpdate(query);
+        ResultSet ergebnis1 = db1.createStatement().executeQuery(query);
+        ResultSet ergebnis2 = db2.createStatement().executeQuery(query);
 
+        while(ergebnis1.next()) {
+            ergebnis2.next();
+            if(!(ergebnis1.getString("id").equals(ergebnis2.getString("id")))) {
+                System.out.println("ID nicht identisch " + ergebnis1.getString("id"));
+            }
+            if(ergebnis1.getString("username") != ergebnis2.getString("username")) {
+                System.out.println("Username nicht identisch "  + ergebnis1.getString("username"));
+            } 
+        }
     }
-
-
 }
