@@ -11,8 +11,8 @@ public class Main {
 
         //Class.forName("org.h2.Driver");
 
-        String connectionKonnektor = "jdbc:h2:./test/db1";
-        String connectionPortal = "jdbc:h2:./test/db2";
+        String connectionKonnektor = "jdbc:h2:./databases/db1";
+        String connectionPortal = "jdbc:h2:./databases/db2";
 
         Connection con = getConnection(connectionKonnektor);
         Connection connection = getConnection(connectionPortal);
