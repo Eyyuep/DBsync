@@ -49,8 +49,6 @@ public class Main {
         System.out.println("Vergleich Ergebnisse:");
         compareData(conKonnektor, conPortal);
         System.out.println("");
-        
-
     }
     
     public static Connection getConnection(String connectionString) {
@@ -65,54 +63,24 @@ public class Main {
             e.printStackTrace();
         }
         return con;
-
     }
-
-    /*public static void createTable(Connection con) throws SQLException {
-
-        // Identity wird zu Serial
-        String query = "create table if not exists tabelle_1" +
-                "(id IDENTITY," +
-                "username varchar(50));";
-
-        con.createStatement().execute(query);
-
-    }*/
-
-    /*public static void createDataSet(Connection con) throws SQLException {
-
-        String query = "insert into tabelle_1(username)" +
-                "values('Manfred');";
-
-        con.createStatement().execute(query);
-
-    }*/
 
     public static void showDB(Connection con) throws SQLException {
 
         String query = "select * from tbl_test;"; //<-- hier bitte wegen Tablename aufpassen! Unterschiede bei euch!
+                                                  //    am besten einen Parameter hinzufügen und Tabelennamen dynamisch halten
 
         ResultSet ergebnis = con.createStatement().executeQuery(query);
 
         while (ergebnis.next()) {
             System.out.println(ergebnis.getString("id") + " - " + ergebnis.getString("username"));
         }
-
-        System.out.println("");
-
+        System.out.println();
     }
-
-    /*public static void editData(Connection con) throws SQLException {
-
-        String query = "update tabelle_1 set username = 'ronaldinho' where id = 1";
-
-        con.createStatement().executeUpdate(query);
-
-    }*/
 
     public static void compareData(Connection db1, Connection db2) throws SQLException {
 
-        String query = "select * from tbl_test;";
+        String query = "select * from tbl_test;"; //<-- hier gleiches Problem!!!
 
         ResultSet ergebnis1 = db1.createStatement().executeQuery(query);
         ResultSet ergebnis2 = db2.createStatement().executeQuery(query);
@@ -122,9 +90,39 @@ public class Main {
             if(!(ergebnis1.getString("id").equals(ergebnis2.getString("id")))) {
                 System.out.println("ID " + ergebnis1.getString("id") + " ist nicht identisch mit " + ergebnis2.getString("id"));
             }
-            if(ergebnis1.getString("username").equals(ergebnis2.getString("username"))) {
+            if(!(ergebnis1.getString("username").equals(ergebnis2.getString("username")))) {
                 System.out.println(ergebnis1.getString("username") + " ist nicht identisch mit "  + ergebnis2.getString("username"));
             } 
         }
+    }
+
+    // -------------------------------- Zurzeit nicht notwendige Methoden --------------------------------
+
+    public static void createTable(Connection con) throws SQLException {
+
+        // Identity wird zu Serial
+        String query = "create table if not exists tabelle_1" +
+                "(id IDENTITY," +
+                "username varchar(50));";
+
+        con.createStatement().execute(query);
+
+    }
+
+    public static void createDataSet(Connection con) throws SQLException {
+
+        String query = "insert into tabelle_1(username)" +
+                "values('Manfred');";
+
+        con.createStatement().execute(query);
+
+    }
+
+    public static void editData(Connection con) throws SQLException {
+
+        String query = "update tabelle_1 set username = 'ronaldinho' where id = 1";
+
+        con.createStatement().executeUpdate(query);
+
     }
 }
