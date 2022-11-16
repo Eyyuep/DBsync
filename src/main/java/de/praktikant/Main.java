@@ -11,25 +11,25 @@ public class Main {
 
         //Class.forName("org.h2.Driver");
 
-        String connectionKonnektor = "jdbc:h2:./databases/db1";
-        String connectionPortal = "jdbc:h2:./databases/db2";
+        String connectionKonnektor = "jdbc:postgresql://localhost/db_connector?user=postgres&password=nassim21";
+        String connectionPortal = "jdbc:postgresql://localhost/db_portal?user=postgres&password=nassim21";
 
         Connection conKonnektor = getConnection(connectionKonnektor);
         Connection conPortal = getConnection(connectionPortal);
 
-        createTable(conKonnektor);
-        createTable(conPortal);
+        //createTable(conKonnektor);
+        //createTable(conPortal);
 
         //createDataSet(conKonnektor);
         //createDataSet(conPortal);
 
-        showDB(conKonnektor);
-        showDB(conPortal);
+        //showDB(conKonnektor);
+        //showDB(conPortal);
 
         
         //editData(conPortal);
         
-        compareData(conKonnektor,conPortal);
+        //compareData(conKonnektor,conPortal);
 
 
     }
