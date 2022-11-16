@@ -20,8 +20,9 @@ public class Main {
         final String connectionKonnektor = "jdbc:postgresql://localhost/" + database1 + "?user="+ username + "&password=" + password;
         final String connectionPortal = "jdbc:postgresql://localhost/" + database2 + "?user="+ username + "&password=" + password;
 
-
+        System.out.print("Verbindung zu DB1: ");
         Connection conKonnektor = getConnection(connectionKonnektor);
+        System.out.print("Verbindung zu DB2: ");
         Connection conPortal = getConnection(connectionPortal);
 
         //createTable(conKonnektor);
@@ -30,11 +31,9 @@ public class Main {
         //createDataSet(conKonnektor);
         //createDataSet(conPortal);
 
-
-//showDB(conKonnektor);
+        //showDB(conKonnektor);
         //showDB(conPortal);
-
-        
+       
         //editData(conPortal);
         
         //compareData(conKonnektor,conPortal);
@@ -62,6 +61,7 @@ public class Main {
             con = DriverManager.getConnection(connectionString);
             System.out.println("Hat geklappt!");
         } catch (SQLException e) {
+            e.getMessage();
             e.printStackTrace();
         }
         return con;
@@ -90,7 +90,7 @@ public class Main {
 
     public static void showDB(Connection con) throws SQLException {
 
-        String query = "select * from tbl_test;";
+        String query = "select * from tbl_test;"; //<-- hier bitte wegen Tablename aufpassen! Unterschiede bei euch!
 
         ResultSet ergebnis = con.createStatement().executeQuery(query);
 
@@ -122,11 +122,9 @@ public class Main {
             if(!(ergebnis1.getString("id").equals(ergebnis2.getString("id")))) {
                 System.out.println("ID " + ergebnis1.getString("id") + " ist nicht identisch mit " + ergebnis2.getString("id"));
             }
-            if(ergebnis1.getString("username") != ergebnis2.getString("username")) {
+            if(ergebnis1.getString("username").equals(ergebnis2.getString("username"))) {
                 System.out.println(ergebnis1.getString("username") + " ist nicht identisch mit "  + ergebnis2.getString("username"));
             } 
         }
-
     }
-
 }
