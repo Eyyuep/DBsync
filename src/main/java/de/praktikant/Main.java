@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException,Exception {
 
 
-        FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.properties");  
+        FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");  
         Properties p = new Properties();  
         p.load(reader);  
         /* Testdaten zum aufrufen von db.properties
