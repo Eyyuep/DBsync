@@ -1,24 +1,38 @@
 package de.praktikant;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.*;  
+import java.io.*; 
+
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException,Exception {
 
-        //Class.forName("org.h2.Driver");
-
-
+/* sobald db.properties klappt löschen
         final String username = "";
         final String password = "";
         final String database1 = "";
         final String database2 = "";
+*/
 
-        final String connectionKonnektor = "jdbc:postgresql://localhost/" + database1 + "?user="+ username + "&password=" + password;
-        final String connectionPortal = "jdbc:postgresql://localhost/" + database2 + "?user="+ username + "&password=" + password;
+
+        /* ServletContext context = request.getSession().getServletContext();
+        InputStream is = context.getResourceAsStream("/db.properties");
+
+        
+        */
+        FileReader reader=new FileReader("src\\main\\java\\de\\praktikant\\db.properties");  
+        Properties p=new Properties();  
+        p.load(reader);  
+        
+        System.out.println(p.getProperty("username"));  
+        System.out.println(p.getProperty("password")); 
+        System.out.println(p.getProperty("database1"));  
+        System.out.println(p.getProperty("database2")); 
+
+        final String connectionKonnektor = "jdbc:postgresql://localhost/" + p.getProperty("database1") + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
+        final String connectionPortal = "jdbc:postgresql://localhost/" + p.getProperty("database2") + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
 
         System.out.print("Verbindung zu DB1: ");
         Connection conKonnektor = getConnection(connectionKonnektor);
@@ -39,9 +53,9 @@ public class Main {
         //compareData(conKonnektor,conPortal);
 
         System.out.println("");
-        System.out.println("Daten aus der deine DB: " + database1);
+        System.out.println("Daten aus der deine DB: " + p.getProperty("database1"));
         showDB(conKonnektor);
-        System.out.println("Daten aus der deine DB: " + database2);
+        System.out.println("Daten aus der deine DB: " + p.getProperty("database2"));
         showDB(conPortal);
         
         //editData(conPortal);
@@ -67,7 +81,7 @@ public class Main {
 
     public static void showDB(Connection con) throws SQLException {
 
-        String query = "select * from tbl_test;"; //<-- hier bitte wegen Tablename aufpassen! Unterschiede bei euch!
+        String query = "select * from tabelle_dbc;"; //<-- hier bitte wegen Tablename aufpassen! Unterschiede bei euch!
                                                   //    am besten einen Parameter hinzufügen und Tabelennamen dynamisch halten
 
         ResultSet ergebnis = con.createStatement().executeQuery(query);
@@ -80,7 +94,7 @@ public class Main {
 
     public static void compareData(Connection db1, Connection db2) throws SQLException {
 
-        String query = "select * from tbl_test;"; //<-- hier gleiches Problem!!!
+        String query = "select * from tabelle_dbc;"; //<-- hier gleiches Problem!!!
 
         ResultSet ergebnis1 = db1.createStatement().executeQuery(query);
         ResultSet ergebnis2 = db2.createStatement().executeQuery(query);
