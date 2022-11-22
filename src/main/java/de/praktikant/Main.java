@@ -3,12 +3,17 @@ package de.praktikant;
 import java.sql.*;
 import java.util.*;  
 import java.io.*;
+import org.slf4j.*;
 
 
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
-
+        
+        Logger logger = LoggerFactory.getLogger(Main.class);
+        logger.info("Hello World");
+        
+        
 
         FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");  
         Properties p = new Properties();  
