@@ -27,7 +27,8 @@ public class Main {
         String database1 = p.getProperty("database1");
         String database2 = p.getProperty("database2");
 
-
+        //String connectionDB1 = String.format("jdbc:postgresql://localhost/ %S", database1, "?user= %S",  p.getProperty("username"), "&password= %S", p.getProperty("password"));
+        
         final String connectionKonnektor = "jdbc:postgresql://localhost/" + database1 + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
         final String connectionPortal = "jdbc:postgresql://localhost/" + database2 + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
 
@@ -37,9 +38,11 @@ public class Main {
         Connection conPortal = getConnection(connectionPortal);
 
         System.out.println("");
-        System.out.println("Daten aus der deine DB: " + database1);
+        String printDB1 = String.format("Daten aus der deine DB: %s ", database1);
+        System.out.println(printDB1);
         showDB(conKonnektor, table1);
-        System.out.println("Daten aus der deine DB: " + database2);
+        String printDB2 = String.format("Daten aus der deine DB: %s ", database2);
+        System.out.println(printDB2);
         showDB(conPortal, table2);
         
         
@@ -70,15 +73,19 @@ public class Main {
         ResultSet ergebnis = con.createStatement().executeQuery(query);
 
         while (ergebnis.next()) {
-            System.out.println(ergebnis.getString("id") + " - " + ergebnis.getString("username"));
+            String ergebnisIDundUsername = String.format("REsult: %1$d and %2$s", ergebnis.getString("id"), ergebnis.getString("username"));
+            System.out.println(ergebnisIDundUsername);
+            //System.out.println(ergebnis.getString("id") + " - " + ergebnis.getString("username"));
         }
         System.out.println();
     }
 
     public static void compareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
-
-        String query1 = "select * from " + tbl1;
-        String query2 = "select * from " + tbl2; 
+        
+        String abfrageTB1 = String.format("select * from %S ", tbl1);
+        String query1 = abfrageTB1;
+        String abfrageTB2 = String.format("select * from %S ", tbl2);
+        String query2 = abfrageTB2; 
  
 
         ResultSet ergebnis1 = db1.createStatement().executeQuery(query1);
@@ -87,11 +94,15 @@ public class Main {
         while(ergebnis1.next()) {
             ergebnis2.next();
             if(!(ergebnis1.getString("id").equals(ergebnis2.getString("id")))) {
-                System.out.println("ID " + ergebnis1.getString("id") + " ist nicht identisch mit " + ergebnis2.getString("id"));
+                String printErgebnisID = String.format("1%$d and 2%$d", ergebnis1.getString("id"), ergebnis2.getString("id"));
+                System.out.println(printErgebnisID);
+                //System.out.println("ID " + ergebnis1.getString("id") + " ist nicht identisch mit " + ergebnis2.getString("id"));
             }
             if(!(ergebnis1.getString("username").equals(ergebnis2.getString("username")))) {
-                System.out.println(ergebnis1.getString("username") + " ist nicht identisch mit "  + ergebnis2.getString("username"));
-            } 
+                String printErgebnisUsername = String.format(ergebnis1.getString("username"), " ist nicht identisch mit %S " , ergebnis2.getString("username"));
+                System.out.println(printErgebnisUsername);
+                //System.out.println(ergebnis1.getString("username") + " ist nicht identisch mit "  + ergebnis2.getString("username"));
+            }
         }
     }
 }
