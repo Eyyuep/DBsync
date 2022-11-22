@@ -7,12 +7,13 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException,Exception {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
 
 
         FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");  
         Properties p = new Properties();  
         p.load(reader);  
+
         /* Testdaten zum aufrufen von db.properties
         System.out.println(p.getProperty("username"));  
         System.out.println(p.getProperty("password")); 
@@ -21,10 +22,14 @@ public class Main {
         System.out.println(p.getProperty("db1_tbl")); 
         */
 
-        String table = p.getProperty("db1_tbl");
+        String table1 = p.getProperty("db1_tbl");
+        String table2 = p.getProperty("db2_tbl");
+        String database1 = p.getProperty("database1");
+        String database2 = p.getProperty("database2");
 
-        final String connectionKonnektor = "jdbc:postgresql://localhost/" + p.getProperty("database1") + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
-        final String connectionPortal = "jdbc:postgresql://localhost/" + p.getProperty("database2") + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
+
+        final String connectionKonnektor = "jdbc:postgresql://localhost/" + database1 + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
+        final String connectionPortal = "jdbc:postgresql://localhost/" + database2 + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
 
         System.out.print("Verbindung zu DB1: ");
         Connection conKonnektor = getConnection(connectionKonnektor);
@@ -32,14 +37,14 @@ public class Main {
         Connection conPortal = getConnection(connectionPortal);
 
         System.out.println("");
-        System.out.println("Daten aus der deine DB: " + p.getProperty("database1"));
-        showDB(conKonnektor, table);
-        System.out.println("Daten aus der deine DB: " + p.getProperty("database2"));
-        showDB(conPortal, table);
+        System.out.println("Daten aus der deine DB: " + database1);
+        showDB(conKonnektor, table1);
+        System.out.println("Daten aus der deine DB: " + database2);
+        showDB(conPortal, table2);
         
         
         System.out.println("Vergleich Ergebnisse:");
-        compareData(conKonnektor, conPortal, p);
+        compareData(conKonnektor, conPortal, table1, table2);
         System.out.println("");
     }
     
@@ -59,7 +64,8 @@ public class Main {
 
     public static void showDB(Connection con, String table) throws SQLException {
     
-        String query = String.format("select * from %S", table);
+        String formatedStringSQL = String.format("select * from %S", table);
+        String query = formatedStringSQL;
 
         ResultSet ergebnis = con.createStatement().executeQuery(query);
 
@@ -69,12 +75,14 @@ public class Main {
         System.out.println();
     }
 
-    public static void compareData(Connection db1, Connection db2, Properties p) throws SQLException {
+    public static void compareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
 
-        String query = "select * from " + p.getProperty("db1_tbl"); 
+        String query1 = "select * from " + tbl1;
+        String query2 = "select * from " + tbl2; 
+ 
 
-        ResultSet ergebnis1 = db1.createStatement().executeQuery(query);
-        ResultSet ergebnis2 = db2.createStatement().executeQuery(query);
+        ResultSet ergebnis1 = db1.createStatement().executeQuery(query1);
+        ResultSet ergebnis2 = db2.createStatement().executeQuery(query2);
 
         while(ergebnis1.next()) {
             ergebnis2.next();
