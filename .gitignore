@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,intellij+all,visualstudiocode,java,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,intellij+all,visualstudiocode,java,maven
 
+# Custom
+
 ### Eclipse ###
 .metadata
 bin/
@@ -202,11 +204,11 @@ buildNumber.properties
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
