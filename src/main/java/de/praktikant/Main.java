@@ -11,13 +11,12 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
         
         Logger logger = LoggerFactory.getLogger(Main.class);
-        //^logger.warn("Ich bin logger: Warnung");
-        
+        //logger.warn("Ich bin logger: Warnung");
+    
 
         FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");  
         Properties p = new Properties();  
         p.load(reader);  
-
 
         String table1 = p.getProperty("db1_tbl");
         String table2 = p.getProperty("db2_tbl");
@@ -26,31 +25,47 @@ public class Main {
 
         //String connectionDB1 = String.format("jdbc:postgresql://localhost/ %1$s ?user= %2$s &password= %3$s", database1, p.getProperty("username"), p.getProperty("password"));
         //String connectionDB2 = String.format("jdbc:postgresql://localhost/ %1$s ?user= %2$s &password= %3$s", database2, p.getProperty("username"), p.getProperty("password"));
-
         final String connectionKonnektor = "jdbc:postgresql://localhost/" + database1 + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
         final String connectionPortal = "jdbc:postgresql://localhost/" + database2 + "?user="+ p.getProperty("username") + "&password=" + p.getProperty("password");
 
+        
         logger.info("Verbindung zu DB1: ");
-        Connection conKonnektor = getConnection(connectionKonnektor);
-        logger.info("Verbindung zu DB2: ");
-        Connection conPortal = getConnection(connectionPortal);
+        connectionDB myConnectionDBKonnektor = new connectionDB();
+        Connection conKonnektor = myConnectionDBKonnektor.getConnection(connectionKonnektor);
+        //Connection conKonnektor = getConnection(connectionKonnektor);
+        
 
+        logger.info("Verbindung zu DB2: ");
+        connectionDB myConnectionDBPortal = new connectionDB();
+        Connection conPortal = myConnectionDBPortal.getConnection(connectionPortal);
+        //Connection conPortal = getConnection(connectionPortal);
+
+        
         logger.info("");
         String printDB1 = String.format("Daten aus der deine DB: %s ", database1);
         logger.info(printDB1);
-        showDB(conKonnektor, table1);
+        showDB myShowDBKonnektor = new showDB();
+        myShowDBKonnektor.myShowDB(conKonnektor, table1);
+        //showDB(conKonnektor, table1);
+        
+        logger.info("");
         String printDB2 = String.format("Daten aus der deine DB: %s ", database2);
         logger.info(printDB2);
-        showDB(conPortal, table2);
+        showDB myShowDBPortal = new showDB();
+        myShowDBPortal.myShowDB(conPortal, table2);
+        //showDB(conPortal, table2);
         
 
+        logger.info("");
         logger.info("Vergleich Ergebnisse:");
-        compareData(conKonnektor, conPortal, table1, table2);
+        compareData myCompareDBData = new compareData();
+        myCompareDBData.myCompareData(conKonnektor, conPortal, table1, table2);
+        //compareData(conKonnektor, conPortal, table1, table2);
         logger.info("");
 
     }
     
-    public static Connection getConnection(String connectionString) {
+    /*public static Connection getConnection(String connectionString) {
 
         Connection con = null;
         Logger logger = LoggerFactory.getLogger(Main.class);
@@ -59,13 +74,12 @@ public class Main {
             con = DriverManager.getConnection(connectionString);
             logger.info("Hat geklappt!");
         } catch (SQLException e) {
-            e.getMessage();
             e.printStackTrace();
         }
         return con;
-    }
+    }*/
 
-    public static void showDB(Connection con, String table) throws SQLException {
+    /*public static void showDB(Connection con, String table) throws SQLException {
     
         Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -81,9 +95,9 @@ public class Main {
         }
         logger.info("");
 
-    }
+    }*/
 
-    public static void compareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
+    /*public static void compareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
         
         Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -108,6 +122,6 @@ public class Main {
                 //logger.info(ergebnis1.getString("username") + " ist nicht identisch mit "  + ergebnis2.getString("username"));
             }
         }
-    }
+    }*/
     
 }
