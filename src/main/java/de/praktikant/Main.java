@@ -66,7 +66,6 @@ public class Main {
     }
     
     /*public static Connection getConnection(String connectionString) {
-
         Connection con = null;
         Logger logger = LoggerFactory.getLogger(Main.class);
     
@@ -82,25 +81,20 @@ public class Main {
     /*public static void showDB(Connection con, String table) throws SQLException {
     
         Logger logger = LoggerFactory.getLogger(Main.class);
-
         String formatedStringSQL = String.format("select * from %s", table);
         String query = formatedStringSQL;
-
         ResultSet ergebnis = con.createStatement().executeQuery(query);
-
         while (ergebnis.next()) {
             String ergebnisIDundUsername = String.format("ID is: %1$s und Username is: %2$s", ergebnis.getString("id"), ergebnis.getString("username"));;
             logger.info(ergebnisIDundUsername);
             //logger.info(ergebnis.getString("id") + " - " + ergebnis.getString("username"));
         }
         logger.info("");
-
     }*/
 
     /*public static void compareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
         
         Logger logger = LoggerFactory.getLogger(Main.class);
-
         String abfrageTB1 = String.format("select * from %s ", tbl1);
         String query1 = abfrageTB1;
         String abfrageTB2 = String.format("select * from %s ", tbl2);
@@ -108,7 +102,6 @@ public class Main {
  
         ResultSet ergebnis1 = db1.createStatement().executeQuery(query1);
         ResultSet ergebnis2 = db2.createStatement().executeQuery(query2);
-
         while(ergebnis1.next()) {
             ergebnis2.next();
             if(!(ergebnis1.getString("id").equals(ergebnis2.getString("id")))) {
