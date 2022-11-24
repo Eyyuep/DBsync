@@ -44,13 +44,11 @@ java Main
   
   https://www.slf4j.org/manual.html
   
-  https://www.slf4j.org/manual.html
+  https://sematext.com/blog/slf4j-tutorial/
   
   https://hellocoding.de/blog/coding-language/java/strings-formatieren
   
   https://www.atlassian.com/de/git/tutorials/saving-changes/gitignore
-  
-  https://sematext.com/blog/slf4j-tutorial/
   
   https://www.javatpoint.com/java-logger#:~:text=%7D-,Java%20Logging%20Levels,-It%20shows%20the
  
