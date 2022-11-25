@@ -18,7 +18,6 @@ public class showDB {
             while (ergebnis.next()) {
                 String ergebnisIDundUsername = String.format("ID %1$s hat Username %2$s", ergebnis.getString("id"), ergebnis.getString("username"));;
                 logger.info(ergebnisIDundUsername);
-                //logger.info(ergebnis.getString("id") + " - " + ergebnis.getString("username"));
             }
             logger.info("");
       
@@ -27,4 +26,5 @@ public class showDB {
         }
         
     }
+    
 }
