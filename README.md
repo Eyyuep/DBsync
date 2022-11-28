@@ -4,9 +4,9 @@ Das ist ein Tool mit den man zwei **Datenbanken** vergleicht und welche dann üb
 
 # Mit diesen Werkzeugen wurde das Projekt umgesetzt: #
 
-**IDE         <br>
-PostgreSQL  <br>
-Java        <br>
+**IDE: Visual Studio Code mit den Extensions(Git Graph, Extensions Pack for Java (6 in 1), Live Share. <br>
+PostgreSQL mit zwei Datenbänken mit jeweils gleichen Datensätzen <br>
+Java version JDK             <br>
 Spring Boot** <br>
 
 ## Voraussetzungen für das anwenden des DBsync-Tool ##
@@ -14,12 +14,18 @@ Spring Boot** <br>
 <sub> Bitte ihre Login Daten in die **"Properties-Datei"** für die Datenbank in PgAdmin Panel eingeben: <sub> <br>
 
 **username=   <br>
-password=   <br>
-database1=  <br>
-database2=  <br>
-db1_tbl=    <br>
+password=     <br>
+database1=    <br>
+database2=    <br>
+db1_tbl=      <br>
 db2_tbl=**
 
+JDK 19 Install-Link anklicken und JDK 19 installer anklicken:
+https://www.oracle.com/java/technologies/downloads/#jdk19-windows
+
+
+Git Download-Link:
+https://git-scm.com/download/win
 
 ## Das Programm kompilieren
 
