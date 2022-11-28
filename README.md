@@ -56,6 +56,5 @@ java Main
   
   https://www.atlassian.com/de/git/tutorials/saving-changes/gitignore
   
-  https://www.javatpoint.com/java-logger#:~:text=%7D-,Java%20Logging%20Levels,-It%20shows%20the
- 
+  https://www.javatpoint.com/java-logger
   
