@@ -1,4 +1,4 @@
-# DBsync.Java- :coffee: # 
+# DBsync.Java :coffee: # 
 
 Das ist ein Tool mit den man zwei **Datenbanken** vergleicht und welche dann über einen logger Differenzen meldet. <br>
 
