@@ -41,7 +41,7 @@ javac -d .\target\classes\ -cp "C:\Users\BENUTZERNAME\.m2\repository\org\postgre
 Um das Programm zu starten, müssen Sie Folgendes eingeben:
 
 ```console
-java -cp ".\target\classes\;C:\Users\\.m2\repository\org\postgresql\postgresql\42.5.0\postgresql-42.5.0.jar;C:\Users\\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\BENUTZERNAME\.m2\repository\org\slf4j\slf4j-simple\1.7.30\slf4j-simple-1.7.30.jar" de.praktikant.Main
+java -cp ".\target\classes\;C:\Users\BENUTZERNAME\.m2\repository\org\postgresql\postgresql\42.5.0\postgresql-42.5.0.jar;C:\Users\BENUTZERNAME\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\BENUTZERNAME\.m2\repository\org\slf4j\slf4j-simple\1.7.30\slf4j-simple-1.7.30.jar" de.praktikant.Start
 
 ```
 :exclamation: Bitte **BENUTZERNAME** durch eigenen Benutzernamen ersetzen.
