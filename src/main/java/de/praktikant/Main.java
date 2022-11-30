@@ -10,12 +10,6 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
         
-        String zahlS = "010";
-        int zahl = Integer.parseInt(zahlS.charAt(0) + "");
-        System.out.println(zahl);
-
-        System.exit(0);
-
         Logger logger = LoggerFactory.getLogger(Main.class);
     
 
