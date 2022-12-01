@@ -46,7 +46,7 @@ java -cp ".\target\classes\;C:\Users\BENUTZERNAME\.m2\repository\org\postgresql\
 ```
 :exclamation: Bitte **BENUTZERNAME** durch eigenen Benutzernamen ersetzen.
 
-## Quellen, die für das Erstellen der Anwendungen hilfreich waren ##
+## Quellen, die für das erstellen der Anwendungen hilfreich waren ##
 
   https://jdbc.postgresql.org/
   
