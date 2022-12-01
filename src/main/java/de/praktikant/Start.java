@@ -17,7 +17,7 @@ public class Start {
         Properties p = new Properties();  
         p.load(reader); 
 
-
+        //Datenbanken mit der Tabellen wurden als String Variablen gespeichert
         String table1 = p.getProperty("db1_tbl");
         String table2 = p.getProperty("db2_tbl");
         String database1 = p.getProperty("database1");
