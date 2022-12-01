@@ -3,12 +3,12 @@ package de.praktikant;
 import java.sql.*;
 import org.slf4j.*;
 
-public class compareData {
+public class CompareData {
 
     public void myCompareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
 
         try {
-            Logger logger = LoggerFactory.getLogger(Main.class);
+            Logger logger = LoggerFactory.getLogger(Start.class);
 
             String abfrageTB1 = String.format("select * from %s ", tbl1);
             String query1 = abfrageTB1;

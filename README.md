@@ -1,4 +1,4 @@
-# DBsync.Java- :coffee: # 
+# DBsync.Java :coffee: # 
 
 Das ist ein Tool mit den man zwei **Datenbanken** vergleicht und welche dann über einen logger Differenzen meldet. <br>
 
@@ -29,7 +29,7 @@ https://git-scm.com/download/win
 
 ## Das Programm kompilieren
 
-Um das Programm **"DBsync "** zu kompilieren, geben Sie Folgendes ein::
+Um das Programm **"DBsync "** zu kompilieren, geben Sie folgendes ein::
 
 ```console
 javac -d .\target\classes\ -cp "C:\Users\BENUTZERNAME\.m2\repository\org\postgresql\postgresql\42.5.0\postgresql-42.5.0.jar;C:\Users\BENUTZERNAME\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar" .\src\main\java\de\praktikant\*.java
@@ -38,7 +38,7 @@ javac -d .\target\classes\ -cp "C:\Users\BENUTZERNAME\.m2\repository\org\postgre
 
 ## Das Programm ausführen
 
-Um das Programm zu starten, müssen Sie Folgendes eingeben:
+Um das Programm zu starten, müssen Sie folgendes eingeben:
 
 ```console
 java -cp ".\target\classes\;C:\Users\BENUTZERNAME\.m2\repository\org\postgresql\postgresql\42.5.0\postgresql-42.5.0.jar;C:\Users\BENUTZERNAME\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\BENUTZERNAME\.m2\repository\org\slf4j\slf4j-simple\1.7.30\slf4j-simple-1.7.30.jar" de.praktikant.Start
@@ -60,6 +60,5 @@ java -cp ".\target\classes\;C:\Users\BENUTZERNAME\.m2\repository\org\postgresql\
   
   https://www.atlassian.com/de/git/tutorials/saving-changes/gitignore
   
-  https://www.javatpoint.com/java-logger#:~:text=%7D-,Java%20Logging%20Levels,-It%20shows%20the
+  https://www.javatpoint.com/java-logger
  
-  

@@ -3,12 +3,12 @@ package de.praktikant;
 import java.sql.*;
 import org.slf4j.*;
 
-public class showDB {
+public class ShowDB {
     
     public void myShowDB(Connection con, String table) throws SQLException {
         
         try {
-            Logger logger = LoggerFactory.getLogger(Main.class);
+            Logger logger = LoggerFactory.getLogger(Start.class);
 
             String formatedStringSQL = String.format("select * from %s", table);
             String query = formatedStringSQL;
