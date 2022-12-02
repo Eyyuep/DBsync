@@ -30,11 +30,10 @@ public class Start {
         Properties p = new Properties();  
         p.load(reader); 
 
-
-        String table1 = p.getProperty("db1_tbl");
-        String table2 = p.getProperty("db2_tbl");
-        String database1 = p.getProperty("database1");
-        String database2 = p.getProperty("database2");
+        String database1 = p.getProperty("connector_db");
+        String database2 = p.getProperty("portal_db");
+        String table1 = p.getProperty("connector_tabelle");
+        String table2 = p.getProperty("portal_vergleichstabelle");
 
         String connectionDB1 = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", database1, p.getProperty("username"), p.getProperty("password"));
         String connectionDB2 = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", database2, p.getProperty("username"), p.getProperty("password"));

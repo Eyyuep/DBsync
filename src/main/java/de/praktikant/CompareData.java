@@ -1,7 +1,10 @@
 package de.praktikant;
 
-import java.sql.*;
-import org.slf4j.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CompareData {
 
