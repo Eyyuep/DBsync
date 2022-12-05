@@ -24,11 +24,17 @@ public class Start {
     @EventListener(classes = ApplicationReadyEvent.class)
 	private void vergleichDBs() throws FileNotFoundException, IOException, SQLException {
 		Logger logger = LoggerFactory.getLogger(Start.class);
-    
-
-        FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");  
-        Properties p = new Properties();  
-        p.load(reader); 
+      
+        Properties p = new Properties(); 
+        try {
+            FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");
+            p.load(reader); 
+            logger.info("Hat geklappt!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.warn("Fehlerhafte Datei!");
+            return;
+        } 
 
         String database1 = p.getProperty("connector_db");
         String database2 = p.getProperty("portal_db");
