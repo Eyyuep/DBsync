@@ -34,7 +34,7 @@ public class CompareData {
                 }
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.getMessage();
         }
 

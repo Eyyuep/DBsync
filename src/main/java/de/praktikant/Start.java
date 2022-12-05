@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -17,23 +16,24 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class Start {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception  {
     	 SpringApplication.run(Start.class, args);
 
     }
+    
     @EventListener(classes = ApplicationReadyEvent.class)
-	private void vergleichDBs() throws FileNotFoundException, IOException, SQLException {
+	private void vergleichDBs() throws IOException, SQLException {
 		Logger logger = LoggerFactory.getLogger(Start.class);
       
         Properties p = new Properties(); 
         try {
             FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");
             p.load(reader); 
-            logger.info("Hat geklappt!");
-        } catch (Exception e) {
+            logger.info("Propertiesdatei Pfad wurde erkannt!");
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-            logger.warn("Fehlerhafte Datei!");
-            return;
+            logger.warn("Propertiesdatei Pfad konnte nicht gefunden werden");
+            System.exit(0);
         } 
 
         String database1 = p.getProperty("connector_db");
@@ -43,8 +43,7 @@ public class Start {
 
         String connectionDB1 = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", database1, p.getProperty("username"), p.getProperty("password"));
         String connectionDB2 = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", database2, p.getProperty("username"), p.getProperty("password"));
-
-        
+    
         logger.info("Verbindung zu DB1: ");
         ConnectionDB myConnectionDBKonnektor = new ConnectionDB();
         Connection conKonnektor = myConnectionDBKonnektor.getConnection(connectionDB1);
@@ -54,13 +53,12 @@ public class Start {
         ConnectionDB myConnectionDBPortal = new ConnectionDB();
         Connection conPortal = myConnectionDBPortal.getConnection(connectionDB2);
 
-
+        
         logger.info("");
         String printDB1 = String.format("Daten aus der deine DB: %s ", database1);
         logger.info(printDB1);
         ShowDB myShowDBKonnektor = new ShowDB();
         myShowDBKonnektor.myShowDB(conKonnektor, table1);
-        
         
         logger.info("");
         String printDB2 = String.format("Daten aus der deine DB: %s ", database2);
@@ -73,6 +71,7 @@ public class Start {
         logger.info("Vergleich Ergebnisse:");
         CompareData myCompareDBData = new CompareData();
         myCompareDBData.myCompareData(conKonnektor, conPortal, table1, table2);
+
 	}
     
 }

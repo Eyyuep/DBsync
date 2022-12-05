@@ -16,10 +16,12 @@ public class ConnectionDB {
     
         try {
             con = DriverManager.getConnection(connectionString);
-            logger.info("Hat geklappt!");
+            logger.info("Verbindung ist besteht!");
             
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.info("Verbindung konnte nicht hergestellt werden!");
+            System.exit(0);
         }
         return con;
         
