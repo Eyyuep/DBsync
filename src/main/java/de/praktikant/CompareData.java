@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class CompareData {
 
-    public void myCompareData(Connection db1, Connection db2, String tbl1, String tbl2) throws SQLException {
+    public void myCompareData(Connection db1, Connection db2, String tbl1, String tbl2) {
 
         try {
             Logger logger = LoggerFactory.getLogger(Start.class);

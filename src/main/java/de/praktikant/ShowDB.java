@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class ShowDB {
     
-    public void myShowDB(Connection con, String table) throws SQLException {
+    public void myShowDB(Connection con, String table) {
         
         try {
             Logger logger = LoggerFactory.getLogger(Start.class);
@@ -24,7 +24,7 @@ public class ShowDB {
             }
             logger.info("");
       
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.getMessage();
         }
         
