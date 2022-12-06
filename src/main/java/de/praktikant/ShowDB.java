@@ -14,13 +14,12 @@ public class ShowDB {
             Logger logger = LoggerFactory.getLogger(Start.class);
 
             String formatedStringSQL = String.format("select * from %s", table);
-            String query = formatedStringSQL;
 
-            ResultSet ergebnis = con.createStatement().executeQuery(query);
+            ResultSet result = con.createStatement().executeQuery(formatedStringSQL);
             
-            while (ergebnis.next()) {
-                String ergebnisIDundUsername = String.format("ID %1$s hat Username %2$s", ergebnis.getString("id"), ergebnis.getString("username"));;
-                logger.info(ergebnisIDundUsername);
+            while (result.next()) {
+                String fullResult = String.format("ID %1$s hat Username %2$s", result.getString("id"), result.getString("username"));;
+                logger.info(fullResult);
             }
             logger.info("");
       

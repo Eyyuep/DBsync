@@ -37,41 +37,43 @@ public class Start {
             System.exit(0);
         } 
 
-        String database1 = p.getProperty("connector_db");
-        String database2 = p.getProperty("portal_db");
-        String table1 = p.getProperty("connector_tabelle");
-        String table2 = p.getProperty("portal_vergleichstabelle");
+        String databaseConnector = p.getProperty("connector_db");
+        String databasePortal = p.getProperty("portal_db");
+        String tableConnector = p.getProperty("connector_tabelle");
+        String tablePortal = p.getProperty("portal_vergleichstabelle");
 
-        String connectionDB1 = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", database1, p.getProperty("username"), p.getProperty("password"));
-        String connectionDB2 = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", database2, p.getProperty("username"), p.getProperty("password"));
+        String connectionToConnector = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", databaseConnector, p.getProperty("username"), p.getProperty("password"));
+        String connectionToPortal = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", databasePortal, p.getProperty("username"), p.getProperty("password"));
     
 
-        logger.info("Verbindung zu DB1: ");
-        ConnectionDB myConnectionDBKonnektor = new ConnectionDB();
-        Connection conKonnektor = myConnectionDBKonnektor.getConnection(connectionDB1);
+        logger.info("Verbindung zu dbConnector: ");
+        ConnectionDB myConnectionDBconnector = new ConnectionDB();
+        Connection conConnector = myConnectionDBconnector.getConnection(connectionToConnector);
         
-        logger.info("Verbindung zu DB2: ");
-        ConnectionDB myConnectionDBPortal = new ConnectionDB();
-        Connection conPortal = myConnectionDBPortal.getConnection(connectionDB2);
+        logger.info("Verbindung zu dbPortal: ");
+        ConnectionDB myConnectionDBportal = new ConnectionDB();
+        Connection conPortal = myConnectionDBportal.getConnection(connectionToPortal);
 
-        /* 
+         /*
+
         logger.info("");
-        String printDB1 = String.format("Daten aus der deine DB: %s ", database1);
-        logger.info(printDB1);
-        ShowDB myShowDBKonnektor = new ShowDB();
-        myShowDBKonnektor.myShowDB(conKonnektor, table1);
+        String printDBconnector = String.format("Daten aus der deine DB: %s ", databaseConnector);
+        logger.info(printDBconnector);
+        ShowDB myShowDBconnector = new ShowDB();
+        myShowDBconnector.myShowDB(conConnector, tableConnector);
         
         logger.info("");
-        String printDB2 = String.format("Daten aus der deine DB: %s ", database2);
-        logger.info(printDB2);
-        ShowDB myShowDBPortal = new ShowDB();
-        myShowDBPortal.myShowDB(conPortal, table2);
-        */
+        String printDBportal = String.format("Daten aus der deine DB: %s ", databasePortal);
+        logger.info(printDBportal);
+        ShowDB myShowDBportal = new ShowDB();
+        myShowDBportal.myShowDB(conPortal, tablePortal);
+        
+         */
 
         logger.info("");
         logger.info("Vergleich Ergebnisse:");
-        CompareData myCompareDBData = new CompareData();
-        myCompareDBData.myCompareData(conKonnektor, conPortal, table1, table2);
+        CompareData myCompareDBdata = new CompareData();
+        myCompareDBdata.myCompareData(conConnector, conPortal, tableConnector, tablePortal);
 
 	}
     
