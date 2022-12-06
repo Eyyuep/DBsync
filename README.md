@@ -13,15 +13,16 @@ Spring Boot** <br>
 
 <sub> Bitte ihre Login Daten in die **"Properties-Datei"** für die Datenbank in PgAdmin Panel eingeben: <sub> <br>
 
-**username=   <br>
-password=     <br>
-database1=    <br>
-database2=    <br>
-db1_tbl=      <br>
-db2_tbl=**
+**username=               <br>
+password=                 <br>
+connector_db=             <br>
+portal_db=                <br>
+connector_tabelle=        <br>
+portal_vergleichstabelle=**
 
 JDK 19 Install-Link anklicken und JDK 19 installer anklicken:
 https://www.oracle.com/java/technologies/downloads/#jdk19-windows
+
 
 
 Git Download-Link:
@@ -61,4 +62,3 @@ java -cp ".\target\classes\;C:\Users\BENUTZERNAME\.m2\repository\org\postgresql\
   https://www.atlassian.com/de/git/tutorials/saving-changes/gitignore
   
   https://www.javatpoint.com/java-logger
- 
