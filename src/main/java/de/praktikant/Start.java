@@ -65,22 +65,6 @@ public class Start {
         ConnectionDB myConnectionDBportal = new ConnectionDB();
         Connection conPortal = myConnectionDBportal.getConnection(connectionToPortal);
 
-         /*
-
-        logger.info("");
-        String printDBconnector = String.format("Daten aus der deine DB: %s ", databaseConnector);
-        logger.info(printDBconnector);
-        ShowDB myShowDBconnector = new ShowDB();
-        myShowDBconnector.myShowDB(conConnector, tableConnector);
-        
-        logger.info("");
-        String printDBportal = String.format("Daten aus der deine DB: %s ", databasePortal);
-        logger.info(printDBportal);
-        ShowDB myShowDBportal = new ShowDB();
-        myShowDBportal.myShowDB(conPortal, tablePortal);
-        
-         */
-
         logger.info("");
         logger.info("Vergleich Ergebnisse:");
         CompareData myCompareDBdata = new CompareData();
