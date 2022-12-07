@@ -22,28 +22,39 @@ public class Start {
     }
     
     @EventListener(classes = ApplicationReadyEvent.class)
-	private void vergleichDBs() throws IOException {
+	private void vergleichDBs() {
 
 		Logger logger = LoggerFactory.getLogger(Start.class);
       
-        Properties p = new Properties(); 
+        Properties p = new Properties();
+        FileReader reader = null;
+    
         try {
-            FileReader reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");
-            p.load(reader); 
+            reader = new FileReader("src\\main\\java\\de\\praktikant\\db.config.properties");
             logger.info("Propertiesdatei Pfad wurde erkannt!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            logger.warn("Propertiesdatei Pfad konnte nicht gefunden werden");
+            logger.warn("Propertiesdatei Pfad konnte nicht gefunden werden!");
             System.exit(0);
         } 
+
+        try {
+            p.load(reader);    
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.warn("Propertiesdatei konnte nicht geladen werden!");
+            System.exit(0);
+        }
 
         String databaseConnector = p.getProperty("connector_db");
         String databasePortal = p.getProperty("portal_db");
         String tableConnector = p.getProperty("connector_tabelle");
         String tablePortal = p.getProperty("portal_vergleichstabelle");
+        String username =  p.getProperty("username");
+        String password = p.getProperty("password");
 
-        String connectionToConnector = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", databaseConnector, p.getProperty("username"), p.getProperty("password"));
-        String connectionToPortal = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", databasePortal, p.getProperty("username"), p.getProperty("password"));
+        String connectionToConnector = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", databaseConnector, username, password);
+        String connectionToPortal = String.format("jdbc:postgresql://localhost/%1$s?user=%2$s&password=%3$s", databasePortal, username, password);
     
 
         logger.info("Verbindung zu dbConnector: ");
