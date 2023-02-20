@@ -4,7 +4,7 @@ Das ist ein Tool mit den man zwei **Datenbanken** vergleicht und welche dann üb
 
 # Mit diesen Werkzeugen wurde das Projekt umgesetzt: #
 
-**IDE: Visual Studio Code mit den Extensions(Git Graph, Extensions Pack for Java (6 in 1), Live Share. <br>
+**IDE: Visual Studio Code mit den Extensions Git Graph, Extensions Pack for Java (6 in 1), Live Share. <br>
 PostgreSQL mit zwei Datenbänken mit jeweils gleichen Datensätzen <br>
 Java version JDK             <br>
 Spring Boot** <br>
